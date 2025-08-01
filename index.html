@@ -13,37 +13,61 @@
   }
   header {
     background-color: #202020;
-    padding: 1rem 2rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-    letter-spacing: 2px;
+    padding: 1.5rem 2rem 0.5rem;
+    text-align: center;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    letter-spacing: 3px;
     text-transform: uppercase;
   }
+  header p {
+    margin: 0.2rem 0 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: #bbb;
+    font-style: italic;
+  }
   main {
-    max-width: 1000px;
-    margin: 2rem auto;
+    max-width: 1100px;
+    margin: 0 auto 3rem;
     padding: 0 1rem;
   }
   #video-player {
-    width: 100%;
-    max-height: 560px;
     background: black;
-    margin-bottom: 2rem;
+    width: 100%;
+    max-height: 600px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0,0,0,0.7);
   }
-  video {
+  #video-player video {
     width: 100%;
     height: auto;
+    display: block;
+  }
+  #main-title {
+    margin: 0.8rem 0 2rem 0;
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-align: center;
   }
   #video-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    display: flex;
     gap: 1rem;
+    justify-content: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
   }
   .video-thumb {
+    flex: 0 0 23%;
     background-color: #282828;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     overflow: hidden;
+    box-shadow: 0 0 8px rgba(0,0,0,0.5);
     transition: background-color 0.3s ease;
   }
   .video-thumb:hover {
@@ -51,17 +75,52 @@
   }
   .video-thumb img {
     width: 100%;
+    height: auto;
     display: block;
   }
   .video-title {
-    padding: 0.5rem;
-    font-size: 0.9rem;
+    padding: 0.6rem 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ddd;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  /* Scrollbar styling for horizontal scroll */
+  #video-list::-webkit-scrollbar {
+    height: 8px;
+  }
+  #video-list::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 4px;
+  }
+  #video-list::-webkit-scrollbar-track {
+    background: #222;
+  }
+  @media(max-width: 768px) {
+    #video-list {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .video-thumb {
+      flex: 0 0 45%;
+      margin-bottom: 1rem;
+    }
+  }
+  @media(max-width: 480px) {
+    .video-thumb {
+      flex: 0 0 90%;
+    }
   }
 </style>
 </head>
 <body>
 
-<header>Skylinee Videos</header>
+<header>
+  <h1>Skylinee Videos</h1>
+  <p>where you can let your hair down</p>
+</header>
 
 <main>
   <section id="video-player">
@@ -69,8 +128,8 @@
       <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
-    <h2 id="main-title">Big Buck Bunny</h2>
   </section>
+  <h2 id="main-title">Big Buck Bunny</h2>
 
   <section id="video-list">
     <div class="video-thumb" onclick="playVideo('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4', 'Elephant’s Dream')">
