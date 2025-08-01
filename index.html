@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet" />
 
   <style>
-    /* Reset & base */
     * {
       box-sizing: border-box;
     }
@@ -25,13 +24,14 @@
     /* HEADER */
     header {
       height: 56px;
-      background-color: #FF0000; /* YouTube red */
+      background-color: #FF0000;
       color: white;
       display: flex;
       align-items: center;
       padding: 0 16px;
-      justify-content: space-between;
       user-select: none;
+      position: relative;
+      justify-content: space-between;
     }
 
     .logo-container {
@@ -41,12 +41,33 @@
       font-family: 'Comic Neue', cursive, sans-serif;
       font-size: 1.5rem;
       font-weight: 700;
+      min-width: 150px;
     }
 
     .logo-container span {
       font-size: 1.8rem;
     }
 
+    /* Search bar container */
+    .search-container {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50%;
+      max-width: 600px;
+    }
+
+    .search-container input[type="search"] {
+      width: 100%;
+      padding: 6px 12px;
+      font-size: 1rem;
+      border-radius: 2px;
+      border: none;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    /* Upload button */
     .upload-button {
       background: white;
       color: #FF0000;
@@ -57,6 +78,7 @@
       cursor: pointer;
       font-size: 1rem;
       transition: background-color 0.2s ease;
+      min-width: 80px;
     }
     .upload-button:hover {
       background-color: #f0f0f0;
@@ -86,7 +108,7 @@
     }
 
     nav.sidebar li {
-      padding: 10px 20px;
+      padding: 12px 24px;
       cursor: pointer;
       font-weight: 600;
       color: #333;
@@ -95,6 +117,10 @@
       text-overflow: ellipsis;
       user-select: none;
       transition: background-color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1rem;
     }
     nav.sidebar li:hover {
       background-color: #eee;
@@ -105,7 +131,7 @@
       color: white;
     }
 
-    /* MAIN CONTENT */
+    /* Main content */
     main {
       flex: 1;
       padding: 20px 30px;
@@ -146,7 +172,7 @@
       text-overflow: ellipsis;
     }
 
-    /* FOOTER */
+    /* Footer */
     footer {
       height: 40px;
       background: #f1f1f1;
@@ -158,7 +184,7 @@
       flex-shrink: 0;
     }
 
-    /* Scrollbar for sidebar and main */
+    /* Scrollbar */
     nav.sidebar::-webkit-scrollbar,
     main::-webkit-scrollbar {
       width: 8px;
@@ -167,6 +193,48 @@
     main::-webkit-scrollbar-thumb {
       background-color: rgba(0,0,0,0.1);
       border-radius: 4px;
+    }
+
+    /* Icons for sidebar */
+    nav.sidebar li svg {
+      fill: currentColor;
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .container {
+        flex-direction: column;
+        height: auto;
+      }
+      nav.sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+        display: flex;
+        justify-content: space-around;
+        padding: 0;
+      }
+      nav.sidebar ul {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+      }
+      nav.sidebar li {
+        padding: 12px 0;
+        font-size: 0.9rem;
+      }
+      main {
+        padding: 10px 15px;
+        justify-content: center;
+      }
+      .search-container {
+        width: 60%;
+        max-width: none;
+        left: 50%;
+        transform: translateX(-50%);
+      }
     }
   </style>
 </head>
@@ -177,13 +245,32 @@
       <span>📷</span>
       <div>skylinee tube</div>
     </div>
+
+    <div class="search-container">
+      <input type="search" placeholder="Search" aria-label="Search videos" />
+    </div>
+
     <button class="upload-button" onclick="uploadVideo()">Upload</button>
   </header>
 
   <div class="container">
-    <nav class="sidebar" id="videoList">
+    <nav class="sidebar">
       <ul>
-        <!-- Video list items inserted by JS -->
+        <li class="active" data-menu="home" title="Home">
+          <!-- Home icon -->
+          <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+          Home
+        </li>
+        <li data-menu="shorts" title="Shorts">
+          <!-- Shorts icon -->
+          <svg viewBox="0 0 24 24"><path d="M10 16.5l6-4.5-6-4.5v9z"/></svg>
+          Shorts
+        </li>
+        <li data-menu="you" title="You">
+          <!-- User icon -->
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20v-1a4 4 0 014-4h8a4 4 0 014 4v1"/></svg>
+          You
+        </li>
       </ul>
     </nav>
 
@@ -213,28 +300,12 @@
       { title: "Video 12", videoFile: "video12.mp4", thumbnailFile: "video12.jpg" },
     ];
 
-    // Reference elements
     const videoGallery = document.getElementById('videoGallery');
-    const videoList = document.getElementById('videoList').querySelector('ul');
 
-    // Populate sidebar list
-    videos.forEach((video, index) => {
-      const li = document.createElement('li');
-      li.textContent = video.title;
-      li.dataset.index = index;
-      if(index === 0) li.classList.add('active'); // highlight first by default
-      li.addEventListener('click', () => {
-        // Highlight active list item
-        document.querySelectorAll('nav.sidebar li').forEach(item => item.classList.remove('active'));
-        li.classList.add('active');
-        // Show only the clicked video in main
-        showSingleVideo(index);
-      });
-      videoList.appendChild(li);
-    });
+    // Load videos on "Home" selected, else blank for now
+    const sidebarItems = document.querySelectorAll('nav.sidebar li');
 
-    // Show all videos on load
-    function showAllVideos() {
+    function showVideos() {
       videoGallery.innerHTML = '';
       videos.forEach(({title, videoFile, thumbnailFile}) => {
         const box = document.createElement('div');
@@ -263,40 +334,30 @@
       });
     }
 
-    // Show a single video in main content
-    function showSingleVideo(index) {
-      const video = videos[index];
+    function clearVideos() {
       videoGallery.innerHTML = '';
-
-      const box = document.createElement('div');
-      box.className = 'video-box';
-
-      const videoEl = document.createElement('video');
-      videoEl.setAttribute('poster', `thumbnails/${video.thumbnailFile}`);
-      videoEl.setAttribute('preload', 'metadata');
-      videoEl.setAttribute('controls', '');
-      videoEl.setAttribute('muted', '');
-
-      const source = document.createElement('source');
-      source.src = `videos/${video.videoFile}`;
-      source.type = 'video/mp4';
-
-      videoEl.appendChild(source);
-
-      const titleDiv = document.createElement('div');
-      titleDiv.className = 'video-title';
-      titleDiv.textContent = video.title;
-
-      box.appendChild(videoEl);
-      box.appendChild(titleDiv);
-
-      videoGallery.appendChild(box);
     }
 
-    // Initialize page with all videos visible
-    showAllVideos();
+    sidebarItems.forEach(item => {
+      item.addEventListener('click', () => {
+        // Remove active class
+        sidebarItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
 
-    // Upload button click handler (opens file picker)
+        const menu = item.dataset.menu;
+        if(menu === 'home') {
+          showVideos();
+        } else {
+          clearVideos();
+          videoGallery.textContent = `Content for "${menu.charAt(0).toUpperCase() + menu.slice(1)}" is not implemented yet.`;
+        }
+      });
+    });
+
+    // Initialize with Home videos visible
+    showVideos();
+
+    // Upload button handler
     function uploadVideo() {
       const input = document.createElement('input');
       input.type = 'file';
@@ -306,7 +367,6 @@
         const files = e.target.files;
         alert(`${files.length} file(s) selected for upload.\n\n` +
               'Uploading to server is not implemented in this demo.');
-        // You can implement upload logic here (e.g. send to your backend)
       };
       input.click();
     }
