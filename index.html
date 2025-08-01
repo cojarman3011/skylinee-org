@@ -1,82 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Skylinee Video Hub</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skylinee Tube</title>
+
+  <!-- Playful font from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      font-family: 'Comic Neue', cursive, sans-serif;
+      color: #007bff; /* Blue */
+      font-size: 2.5rem;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      user-select: none;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    main {
+      flex-grow: 1;
+      padding: 1.5rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      background: white;
+      max-width: 1200px;
+      margin: 1rem auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .video-box {
+      width: 280px;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      user-select: none;
+      text-align: center;
+      color: #333;
+    }
+
+    .video-thumbnail {
+      width: 100%;
+      height: 158px;
+      border-radius: 8px;
+      object-fit: cover;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+      margin-bottom: 0.5rem;
+      background: #ddd;
+    }
+
+    .video-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #666;
+      padding: 1rem 0;
+      background: #f1f1f1;
+      user-select: none;
+    }
+  </style>
 </head>
 <body>
+
   <header>
-    <h1>Skylinee Video Hub</h1>
+    skylinee tube 📷
   </header>
 
-  <main class="video-grid">
-    <!-- 12 Video Cards -->
-    <div class="video-card">
-      <img src="https://i.ytimg.com/vi/ScMzIvxBSi4/mqdefault.jpg" alt="Video thumbnail">
-      <h3>Exploring AI Tools</h3>
-      <p>Skylinee Media · 6:00</p>
+  <main>
+    <div class="video-box">
+      <img src="thumbnails/tech_in_2025.jpg" alt="Tech in 2025" class="video-thumbnail" />
+      <div class="video-title">Tech in 2025</div>
     </div>
-    <div class="video-card">
-      <img src="https://i.ytimg.com/vi/Bey4XXJAqS8/mqdefault.jpg" alt="Video thumbnail">
-      <h3>Tech in 2025</h3>
-      <p>Skylinee Reports · 8:23</p>
+    <div class="video-box">
+      <img src="thumbnails/video2.jpg" alt="Video 2" class="video-thumbnail" />
+      <div class="video-title">Video 2</div>
     </div>
-    <div class="video-card">
-      <img src="https://i.ytimg.com/vi/kXYiU_JCYtU/mqdefault.jpg" alt="Video thumbnail">
-      <h3>Gadget Roundup</h3>
-      <p>Skylinee Review · 5:12</p>
+    <div class="video-box">
+      <img src="thumbnails/video3.jpg" alt="Video 3" class="video-thumbnail" />
+      <div class="video-title">Video 3</div>
     </div>
-    <div class="video-card">
-      <img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/mqdefault.jpg" alt="Video thumbnail">
-      <h3>Cybersecurity 101</h3>
-      <p>Skylinee Security · 9:45</p>
+    <div class="video-box">
+      <img src="thumbnails/video4.jpg" alt="Video 4" class="video-thumbnail" />
+      <div class="video-title">Video 4</div>
     </div>
-    <div class="video-card">
-      <img src="https://i.ytimg.com/vi/3fumBcKC6RE/mqdefault.jpg" alt="Video thumbnail">
-      <h3>How Internet Works</h3>
-      <p>Corey Talks · 7:10</p>
+    <div class="video-box">
+      <img src="thumbnails/video5.jpg" alt="Video 5" class="video-thumbnail" />
+      <div class="video-title">Video 5</div>
     </div>
-    <div class="video-card">
-      <img src="https://i.ytimg.com/vi/FTQbiNvZqaY/mqdefault.jpg" alt="Video thumbnail">
-      <h3>Network Setup Guide</h3>
-      <p>Skylinee Labs · 6:31</p>
+    <div class="video-box">
+      <img src="thumbnails/video6.jpg" alt="Video 6" class="video-thumbnail" />
+      <div class="video-title">Video 6</div>
     </div>
-    <div class="video-card">
-      <img src="https://i.ytimg.com/vi/L_jWHffIx5E/mqdefault.jpg" alt="Video thumbnail">
-      <h3>Top 10 Tools</h3>
-      <p>Tools & Tech · 4:50</p>
+    <div class="video-box">
+      <img src="thumbnails/video7.jpg" alt="Video 7" class="video-thumbnail" />
+      <div class="video-title">Video 7</div>
     </div>
-    <div class="video-card">
-      <img src="https://i.ytimg.com/vi/uelHwf8o7_U/mqdefault.jpg" alt="Video thumbnail">
-      <h3>Smart Home Setup</h3>
-      <p>Skylinee Living · 3:48</p>
+    <div class="video-box">
+      <img src="thumbnails/video8.jpg" alt="Video 8" class="video-thumbnail" />
+      <div class="video-title">Video 8</div>
     </div>
-    <div class="video-card">
-      <img src="https://i.ytimg.com/vi/CevxZvSJLk8/mqdefault.jpg" alt="Video thumbnail">
-      <h3>Wireless Explained</h3>
-      <p>Skylinee Network · 7:25</p>
+    <div class="video-box">
+      <img src="thumbnails/video9.jpg" alt="Video 9" class="video-thumbnail" />
+      <div class="video-title">Video 9</div>
     </div>
-    <div class="video-card">
-      <img src="https://i.ytimg.com/vi/JGwWNGJdvx8/mqdefault.jpg" alt="Video thumbnail">
-      <h3>Data Privacy Tips</h3>
-      <p>Skylinee Legal · 5:05</p>
+    <div class="video-box">
+      <img src="thumbnails/video10.jpg" alt="Video 10" class="video-thumbnail" />
+      <div class="video-title">Video 10</div>
     </div>
-    <div class="video-card">
-      <img src="https://i.ytimg.com/vi/rYEDA3JcQqw/mqdefault.jpg" alt="Video thumbnail">
-      <h3>Remote Work Setup</h3>
-      <p>Skylinee Remote · 6:15</p>
+    <div class="video-box">
+      <img src="thumbnails/video11.jpg" alt="Video 11" class="video-thumbnail" />
+      <div class="video-title">Video 11</div>
     </div>
-    <div class="video-card">
-      <img src="https://i.ytimg.com/vi/eVTXPUF4Oz4/mqdefault.jpg" alt="Video thumbnail">
-      <h3>How to Code</h3>
-      <p>Learn with Corey · 10:00</p>
+    <div class="video-box">
+      <img src="thumbnails/video12.jpg" alt="Video 12" class="video-thumbnail" />
+      <div class="video-title">Video 12</div>
     </div>
   </main>
 
   <footer>
-    <p>© 2025 Skylinee. All rights reserved.</p>
+    &copy; 2025 Skylinee Tube. All rights reserved.
   </footer>
+
 </body>
 </html>
