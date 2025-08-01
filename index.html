@@ -2,115 +2,48 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Skylinee Videos</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #111;
-      color: #fff;
-    }
-    header {
-      background-color: #202020;
-      padding: 20px;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2em;
-    }
-    .upload-section {
-      background: #181818;
-      padding: 20px;
-      text-align: center;
-      border-bottom: 1px solid #333;
-    }
-    .upload-section input[type="file"] {
-      margin-top: 10px;
-    }
-    .upload-section button {
-      margin-top: 10px;
-      padding: 8px 20px;
-      background: red;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    .video-section {
-      padding: 20px;
-    }
-    .video-section h2 {
-      text-align: center;
-      font-size: 1.5em;
-      margin-bottom: 20px;
-    }
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
-    }
-    .video-card {
-      background: #222;
-      padding: 10px;
-      border-radius: 8px;
-    }
-    .video-card video {
-      width: 100%;
-      border-radius: 5px;
-    }
-    .video-card .title {
-      margin-top: 10px;
-      font-size: 0.95em;
-      color: #ccc;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skylinee Tube</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
-
   <header>
-    <h1>Skylinee Videos</h1>
-    <p>Where you can let your hair down</p>
+    <div class="logo">🎥 Skylinee Tube</div>
+    <input type="text" placeholder="Search" class="search-bar" />
+    <button class="upload-btn">Upload</button>
   </header>
 
-  <section class="upload-section">
-    <h2>Upload Your Video</h2>
-    <form id="uploadForm" method="POST" enctype="multipart/form-data" action="/upload">
-      <input type="file" name="video" accept="video/*" required><br>
-      <button type="submit">Upload</button>
-    </form>
-  </section>
+  <nav class="tabs">
+    <button class="tab active">All</button>
+    <button class="tab">Podcasts</button>
+    <button class="tab">Music</button>
+    <button class="tab">News</button>
+    <button class="tab">Courtrooms</button>
+    <button class="tab">Live</button>
+  </nav>
 
-  <section class="video-section">
-    <h2>Latest Uploads</h2>
-    <div class="video-grid">
-      <div class="video-card">
-        <video controls>
-          <source src="/uploads/sample1.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <div class="title">Sample Video 1</div>
-      </div>
-      <div class="video-card">
-        <video controls>
-          <source src="/uploads/sample2.mp4" type="video/mp4">
-        </video>
-        <div class="title">Sample Video 2</div>
-      </div>
-      <div class="video-card">
-        <video controls>
-          <source src="/uploads/sample3.mp4" type="video/mp4">
-        </video>
-        <div class="title">Sample Video 3</div>
-      </div>
-      <div class="video-card">
-        <video controls>
-          <source src="/uploads/sample4.mp4" type="video/mp4">
-        </video>
-        <div class="title">Sample Video 4</div>
-      </div>
+  <main class="video-grid">
+    <!-- Sample Video Card -->
+    <div class="video-card">
+      <img src="https://via.placeholder.com/320x180" alt="Video thumbnail">
+      <h3>Heat and Eat in 2 Minutes</h3>
+      <p>Sponsored · 2:00</p>
     </div>
-  </section>
 
+    <div class="video-card">
+      <img src="https://via.placeholder.com/320x180" alt="Video thumbnail">
+      <h3>Gangsta Williams on KSOO's Father</h3>
+      <p>RealToonTV · 10:02</p>
+    </div>
+
+    <div class="video-card">
+      <img src="https://via.placeholder.com/320x180" alt="Video thumbnail">
+      <h3>Memphis Wingstop Worker Incident</h3>
+      <p>The Dynamic Reason Channel · 8:24</p>
+    </div>
+
+    <!-- Add more video-card blocks as needed -->
+  </main>
 </body>
 </html>
