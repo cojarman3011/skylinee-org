@@ -1,165 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Skylinee Videos</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0; padding: 0;
-    background-color: #181818;
-    color: #fff;
-  }
-  header {
-    background-color: #202020;
-    padding: 1.5rem 2rem 0.5rem;
-    text-align: center;
-  }
-  header h1 {
-    margin: 0;
-    font-size: 2.5rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-  }
-  header p {
-    margin: 0.2rem 0 1.5rem;
-    font-size: 1.1rem;
-    font-weight: 300;
-    color: #bbb;
-    font-style: italic;
-  }
-  main {
-    max-width: 1100px;
-    margin: 0 auto 3rem;
-    padding: 0 1rem;
-  }
-  #video-player {
-    background: black;
-    width: 100%;
-    max-height: 600px;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 0 15px rgba(0,0,0,0.7);
-  }
-  #video-player video {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  #main-title {
-    margin: 0.8rem 0 2rem 0;
-    font-size: 1.6rem;
-    font-weight: bold;
-    text-align: center;
-  }
-  #video-list {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding-bottom: 0.5rem;
-  }
-  .video-thumb {
-    flex: 0 0 23%;
-    background-color: #282828;
-    border-radius: 6px;
-    cursor: pointer;
-    overflow: hidden;
-    box-shadow: 0 0 8px rgba(0,0,0,0.5);
-    transition: background-color 0.3s ease;
-  }
-  .video-thumb:hover {
-    background-color: #383838;
-  }
-  .video-thumb img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  .video-title {
-    padding: 0.6rem 0.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #ddd;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  /* Scrollbar styling for horizontal scroll */
-  #video-list::-webkit-scrollbar {
-    height: 8px;
-  }
-  #video-list::-webkit-scrollbar-thumb {
-    background-color: #555;
-    border-radius: 4px;
-  }
-  #video-list::-webkit-scrollbar-track {
-    background: #222;
-  }
-  @media(max-width: 768px) {
-    #video-list {
-      flex-wrap: wrap;
-      justify-content: center;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skylinee Videos</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #fff;
     }
-    .video-thumb {
-      flex: 0 0 45%;
-      margin-bottom: 1rem;
+    header {
+      background-color: #202020;
+      padding: 20px;
+      text-align: center;
     }
-  }
-  @media(max-width: 480px) {
-    .video-thumb {
-      flex: 0 0 90%;
+    header h1 {
+      margin: 0;
+      font-size: 2em;
     }
-  }
-</style>
+    .upload-section {
+      background: #181818;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid #333;
+    }
+    .upload-section input[type="file"] {
+      margin-top: 10px;
+    }
+    .upload-section button {
+      margin-top: 10px;
+      padding: 8px 20px;
+      background: red;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .video-section {
+      padding: 20px;
+    }
+    .video-section h2 {
+      text-align: center;
+      font-size: 1.5em;
+      margin-bottom: 20px;
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .video-card {
+      background: #222;
+      padding: 10px;
+      border-radius: 8px;
+    }
+    .video-card video {
+      width: 100%;
+      border-radius: 5px;
+    }
+    .video-card .title {
+      margin-top: 10px;
+      font-size: 0.95em;
+      color: #ccc;
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <h1>Skylinee Videos</h1>
-  <p>where you can let your hair down</p>
-</header>
+  <header>
+    <h1>Skylinee Videos</h1>
+    <p>Where you can let your hair down</p>
+  </header>
 
-<main>
-  <section id="video-player">
-    <video id="main-video" controls>
-      <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+  <section class="upload-section">
+    <h2>Upload Your Video</h2>
+    <form id="uploadForm" method="POST" enctype="multipart/form-data" action="/upload">
+      <input type="file" name="video" accept="video/*" required><br>
+      <button type="submit">Upload</button>
+    </form>
   </section>
-  <h2 id="main-title">Big Buck Bunny</h2>
 
-  <section id="video-list">
-    <div class="video-thumb" onclick="playVideo('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4', 'Elephant’s Dream')">
-      <img src="https://peach.blender.org/wp-content/uploads/title_anouncement.jpg?x11217" alt="Elephant’s Dream" />
-      <div class="video-title">Elephant’s Dream</div>
-    </div>
-    <div class="video-thumb" onclick="playVideo('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4', 'Sintel')">
-      <img src="https://durian.blender.org/wp-content/uploads/2010/05/sintel_poster-600x900.jpg" alt="Sintel" />
-      <div class="video-title">Sintel</div>
-    </div>
-    <div class="video-thumb" onclick="playVideo('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4', 'Tears of Steel')">
-      <img src="https://mango.blender.org/wp-content/uploads/2013/05/mango_poster.jpg" alt="Tears of Steel" />
-      <div class="video-title">Tears of Steel</div>
-    </div>
-    <div class="video-thumb" onclick="playVideo('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4', 'For Bigger Blazes')">
-      <img src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerBlazes.jpg" alt="For Bigger Blazes" />
-      <div class="video-title">For Bigger Blazes</div>
+  <section class="video-section">
+    <h2>Latest Uploads</h2>
+    <div class="video-grid">
+      <div class="video-card">
+        <video controls>
+          <source src="/uploads/sample1.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="title">Sample Video 1</div>
+      </div>
+      <div class="video-card">
+        <video controls>
+          <source src="/uploads/sample2.mp4" type="video/mp4">
+        </video>
+        <div class="title">Sample Video 2</div>
+      </div>
+      <div class="video-card">
+        <video controls>
+          <source src="/uploads/sample3.mp4" type="video/mp4">
+        </video>
+        <div class="title">Sample Video 3</div>
+      </div>
+      <div class="video-card">
+        <video controls>
+          <source src="/uploads/sample4.mp4" type="video/mp4">
+        </video>
+        <div class="title">Sample Video 4</div>
+      </div>
     </div>
   </section>
-</main>
-
-<script>
-  function playVideo(url, title) {
-    const videoPlayer = document.getElementById('main-video');
-    const mainTitle = document.getElementById('main-title');
-    videoPlayer.src = url;
-    mainTitle.textContent = title;
-    videoPlayer.play();
-  }
-</script>
 
 </body>
 </html>
