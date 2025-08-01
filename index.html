@@ -5,10 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Skylinee Tube</title>
 
-  <!-- Playful font -->
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet" />
 
   <style>
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -18,31 +21,62 @@
       min-height: 100vh;
     }
 
+    /* Header (like YouTube) */
     header {
-      font-family: 'Comic Neue', cursive, sans-serif;
-      color: #007bff;
-      font-size: 2.5rem;
-      padding: 1rem 2rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      justify-content: space-between;
+      background-color: #FF0000; /* YouTube red */
+      padding: 0 16px;
+      height: 56px;
+      box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
+      color: white;
       user-select: none;
-      background: white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
+    /* Left: Logo + Title */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Comic Neue', cursive, sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .logo-container span {
+      font-size: 1.8rem;
+    }
+
+    /* Center: Search bar */
+    .search-bar {
+      flex-grow: 1;
+      max-width: 600px;
+      margin: 0 20px;
+    }
+
+    .search-bar input[type="search"] {
+      width: 100%;
+      padding: 8px 12px;
+      font-size: 1rem;
+      border-radius: 2px;
+      border: none;
+      outline: none;
+    }
+
+    /* Main content area */
     main {
       flex-grow: 1;
-      padding: 1.5rem 2rem;
+      padding: 20px 40px;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 20px;
       background: white;
       max-width: 1200px;
-      margin: 1rem auto;
+      margin: 16px auto;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.05);
     }
 
     .video-box {
@@ -51,8 +85,9 @@
       flex-direction: column;
       cursor: pointer;
       user-select: none;
-      text-align: center;
+      text-align: left;
       color: #333;
+      font-family: Arial, sans-serif;
     }
 
     video {
@@ -62,120 +97,109 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.15);
       background: #000;
       object-fit: cover;
-      margin-bottom: 0.5rem;
+      margin-bottom: 8px;
     }
 
     .video-title {
       font-weight: 600;
       font-size: 1.1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
+    /* Footer */
     footer {
       text-align: center;
       font-size: 0.9rem;
       color: #666;
-      padding: 1rem 0;
+      padding: 12px 0;
       background: #f1f1f1;
       user-select: none;
+      margin-top: auto;
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      main {
+        padding: 10px 20px;
+      }
+      .video-box {
+        width: 100%;
+      }
+      .search-bar {
+        max-width: none;
+        margin: 0 8px;
+      }
     }
   </style>
 </head>
 <body>
 
   <header>
-    skylinee tube 📷
+    <div class="logo-container">
+      <span>📷</span>
+      <div>skylinee tube</div>
+    </div>
+
+    <div class="search-bar">
+      <input type="search" placeholder="Search" aria-label="Search videos" />
+    </div>
   </header>
 
-  <main>
-    <div class="video-box">
-      <video poster="thumbnails/future_tech_innovations.jpg" preload="metadata" controls muted>
-        <source src="videos/future_tech_innovations.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      <div class="video-title">Future Tech Innovations</div>
-    </div>
-
-    <div class="video-box">
-      <video poster="thumbnails/video2.jpg" preload="metadata" controls muted>
-        <source src="videos/video2.mp4" type="video/mp4" />
-      </video>
-      <div class="video-title">Video 2</div>
-    </div>
-
-    <div class="video-box">
-      <video poster="thumbnails/video3.jpg" preload="metadata" controls muted>
-        <source src="videos/video3.mp4" type="video/mp4" />
-      </video>
-      <div class="video-title">Video 3</div>
-    </div>
-
-    <div class="video-box">
-      <video poster="thumbnails/video4.jpg" preload="metadata" controls muted>
-        <source src="videos/video4.mp4" type="video/mp4" />
-      </video>
-      <div class="video-title">Video 4</div>
-    </div>
-
-    <div class="video-box">
-      <video poster="thumbnails/video5.jpg" preload="metadata" controls muted>
-        <source src="videos/video5.mp4" type="video/mp4" />
-      </video>
-      <div class="video-title">Video 5</div>
-    </div>
-
-    <div class="video-box">
-      <video poster="thumbnails/video6.jpg" preload="metadata" controls muted>
-        <source src="videos/video6.mp4" type="video/mp4" />
-      </video>
-      <div class="video-title">Video 6</div>
-    </div>
-
-    <div class="video-box">
-      <video poster="thumbnails/video7.jpg" preload="metadata" controls muted>
-        <source src="videos/video7.mp4" type="video/mp4" />
-      </video>
-      <div class="video-title">Video 7</div>
-    </div>
-
-    <div class="video-box">
-      <video poster="thumbnails/video8.jpg" preload="metadata" controls muted>
-        <source src="videos/video8.mp4" type="video/mp4" />
-      </video>
-      <div class="video-title">Video 8</div>
-    </div>
-
-    <div class="video-box">
-      <video poster="thumbnails/video9.jpg" preload="metadata" controls muted>
-        <source src="videos/video9.mp4" type="video/mp4" />
-      </video>
-      <div class="video-title">Video 9</div>
-    </div>
-
-    <div class="video-box">
-      <video poster="thumbnails/video10.jpg" preload="metadata" controls muted>
-        <source src="videos/video10.mp4" type="video/mp4" />
-      </video>
-      <div class="video-title">Video 10</div>
-    </div>
-
-    <div class="video-box">
-      <video poster="thumbnails/video11.jpg" preload="metadata" controls muted>
-        <source src="videos/video11.mp4" type="video/mp4" />
-      </video>
-      <div class="video-title">Video 11</div>
-    </div>
-
-    <div class="video-box">
-      <video poster="thumbnails/video12.jpg" preload="metadata" controls muted>
-        <source src="videos/video12.mp4" type="video/mp4" />
-      </video>
-      <div class="video-title">Video 12</div>
-    </div>
+  <main id="videoGallery">
+    <!-- Video boxes will be inserted here by JavaScript -->
   </main>
 
   <footer>
     &copy; 2025 Skylinee Tube. All rights reserved.
   </footer>
+
+  <script>
+    // Video data
+    const videos = [
+      { title: "Future Tech Innovations", videoFile: "future_tech_innovations.mp4", thumbnailFile: "future_tech_innovations.jpg" },
+      { title: "Video 2", videoFile: "video2.mp4", thumbnailFile: "video2.jpg" },
+      { title: "Video 3", videoFile: "video3.mp4", thumbnailFile: "video3.jpg" },
+      { title: "Video 4", videoFile: "video4.mp4", thumbnailFile: "video4.jpg" },
+      { title: "Video 5", videoFile: "video5.mp4", thumbnailFile: "video5.jpg" },
+      { title: "Video 6", videoFile: "video6.mp4", thumbnailFile: "video6.jpg" },
+      { title: "Video 7", videoFile: "video7.mp4", thumbnailFile: "video7.jpg" },
+      { title: "Video 8", videoFile: "video8.mp4", thumbnailFile: "video8.jpg" },
+      { title: "Video 9", videoFile: "video9.mp4", thumbnailFile: "video9.jpg" },
+      { title: "Video 10", videoFile: "video10.mp4", thumbnailFile: "video10.jpg" },
+      { title: "Video 11", videoFile: "video11.mp4", thumbnailFile: "video11.jpg" },
+      { title: "Video 12", videoFile: "video12.mp4", thumbnailFile: "video12.jpg" },
+    ];
+
+    const gallery = document.getElementById('videoGallery');
+
+    videos.forEach(({title, videoFile, thumbnailFile}) => {
+      const box = document.createElement('div');
+      box.className = 'video-box';
+
+      const video = document.createElement('video');
+      video.setAttribute('poster', `thumbnails/${thumbnailFile}`);
+      video.setAttribute('preload', 'metadata');
+      video.setAttribute('controls', '');
+      video.setAttribute('muted', '');
+
+      const source = document.createElement('source');
+      source.src = `videos/${videoFile}`;
+      source.type = 'video/mp4';
+
+      video.appendChild(source);
+
+      const titleDiv = document.createElement('div');
+      titleDiv.className = 'video-title';
+      titleDiv.textContent = title;
+
+      box.appendChild(video);
+      box.appendChild(titleDiv);
+
+      gallery.appendChild(box);
+    });
+  </script>
 
 </body>
 </html>
