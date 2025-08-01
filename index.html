@@ -3,165 +3,157 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Skylinee Tube</title>
+  <title>Skylinee Tube 🎥</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Fredoka One', cursive;
       background-color: #f9f9f9;
     }
+
     header {
+      background-color: #0073e6;
+      color: white;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background-color: #fff;
       padding: 10px 20px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
     }
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
     }
-    .logo span {
-      color: red;
-    }
-    .search-bar {
-      flex: 1;
-      max-width: 600px;
-      margin: 0 20px;
+
+    .search-upload {
       display: flex;
+      align-items: center;
+      gap: 10px;
     }
-    .search-bar input {
-      flex: 1;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 2px 0 0 2px;
-    }
-    .search-bar button {
-      padding: 8px 16px;
-      background-color: #f8f8f8;
-      border: 1px solid #ccc;
-      border-left: none;
-      cursor: pointer;
-    }
-    .upload-button {
-      background-color: #cc0000;
-      color: white;
-      padding: 8px 12px;
+
+    .search-upload input[type="text"] {
+      padding: 6px;
+      border-radius: 4px;
       border: none;
-      border-radius: 3px;
+    }
+
+    .search-upload button {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      background-color: white;
+      color: #0073e6;
       cursor: pointer;
     }
-    main {
+
+    .container {
       display: flex;
     }
-    nav {
+
+    .sidebar {
       width: 200px;
       background-color: #fff;
-      padding: 10px;
-      box-shadow: 2px 0 4px rgba(0,0,0,0.05);
-      height: calc(100vh - 58px);
-      position: sticky;
-      top: 58px;
+      padding: 20px;
+      border-right: 1px solid #ccc;
+      height: calc(100vh - 70px);
     }
-    nav ul {
+
+    .sidebar ul {
       list-style: none;
       padding: 0;
     }
-    nav li {
-      padding: 10px 5px;
+
+    .sidebar ul li {
+      margin: 20px 0;
       font-weight: bold;
-      cursor: pointer;
+      color: #333;
     }
-    .video-container {
+
+    .main {
       flex: 1;
       padding: 20px;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 20px;
     }
+
     .video-box {
       background-color: #fff;
+      padding: 10px;
       border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
+
     .video-box img {
       width: 100%;
-      height: 180px;
+      height: 150px;
       object-fit: cover;
+      border-radius: 8px;
     }
+
     .video-box p {
-      margin: 10px 0;
-      font-weight: bold;
+      margin-top: 8px;
+      font-size: 1rem;
     }
+
     footer {
       text-align: center;
-      padding: 20px;
-      background-color: #eee;
-      margin-top: 30px;
-      font-size: 14px;
+      padding: 15px;
+      background-color: #f0f0f0;
+      font-weight: bold;
+      position: relative;
     }
   </style>
 </head>
 <body>
-
   <header>
-    <div class="logo">📷 <span>Skylinee</span> Tube</div>
-    <div class="search-bar">
-      <input type="text" placeholder="Search">
-      <button>🔍</button>
+    <h1>Skylinee Tube 🎥</h1>
+    <div class="search-upload">
+      <input type="text" placeholder="Search..." />
+      <button>Upload</button>
     </div>
-    <button class="upload-button">Upload</button>
   </header>
 
-  <main>
-    <nav>
+  <div class="container">
+    <div class="sidebar">
       <ul>
-        <li>🏠 Home</li>
-        <li>🎬 Shorts</li>
-        <li>👤 You</li>
+        <li>Home</li>
+        <li>Shorts</li>
+        <li>You</li>
       </ul>
-    </nav>
+    </div>
 
-    <div class="video-container">
+    <div class="main">
       <!-- Video 1 -->
       <div class="video-box">
-        <a href="videos/video.mp4" target="_blank">
-          <img src="thumbnails/video.jpg" alt="Game On!!">
+        <a href="video.mp4" target="_blank">
+          <img src="thumbnails/video.jpg" alt="Game On!!" onerror="this.src='https://via.placeholder.com/300x150?text=Game+On!!'"/>
           <p>Game On!!</p>
         </a>
       </div>
 
       <!-- Video 2 -->
       <div class="video-box">
-        <a href="videos/driving.mp4" target="_blank">
-          <img src="thumbnails/driving.jpg" alt="Driving">
+        <a href="driving.mp4" target="_blank">
+          <img src="thumbnails/driving.jpg" alt="Driving" onerror="this.src='https://via.placeholder.com/300x150?text=Driving'"/>
           <p>Driving</p>
         </a>
       </div>
 
-      <!-- Video 3-12 placeholders -->
-      <div class="video-box"><img src="thumbnails/placeholder.jpg" alt="Video"><p>Video Title</p></div>
-      <div class="video-box"><img src="thumbnails/placeholder.jpg" alt="Video"><p>Video Title</p></div>
-      <div class="video-box"><img src="thumbnails/placeholder.jpg" alt="Video"><p>Video Title</p></div>
-      <div class="video-box"><img src="thumbnails/placeholder.jpg" alt="Video"><p>Video Title</p></div>
-      <div class="video-box"><img src="thumbnails/placeholder.jpg" alt="Video"><p>Video Title</p></div>
-      <div class="video-box"><img src="thumbnails/placeholder.jpg" alt="Video"><p>Video Title</p></div>
-      <div class="video-box"><img src="thumbnails/placeholder.jpg" alt="Video"><p>Video Title</p></div>
-      <div class="video-box"><img src="thumbnails/placeholder.jpg" alt="Video"><p>Video Title</p></div>
-      <div class="video-box"><img src="thumbnails/placeholder.jpg" alt="Video"><p>Video Title</p></div>
-      <div class="video-box"><img src="thumbnails/placeholder.jpg" alt="Video"><p>Video Title</p></div>
+      <!-- Placeholder Boxes (3 - 12) -->
+      ${Array.from({ length: 10 }, (_, i) => `
+        <div class="video-box">
+          <a href="#">
+            <img src="https://via.placeholder.com/300x150?text=Video+${i + 3}" />
+            <p>Video ${i + 3}</p>
+          </a>
+        </div>
+      `).join('')}
     </div>
-  </main>
+  </div>
 
-  <footer>
-    &copy; 2025 Skylinee Tube. All rights reserved.
-  </footer>
-
+  <footer>&copy; 2025 Skylinee Tube</footer>
 </body>
 </html>
