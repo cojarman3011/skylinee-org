@@ -1,159 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Skylinee Tube 🎥</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Fredoka One', cursive;
-      background-color: #f9f9f9;
-    }
-
-    header {
-      background-color: #0073e6;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 1.8rem;
-    }
-
-    .search-upload {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .search-upload input[type="text"] {
-      padding: 6px;
-      border-radius: 4px;
-      border: none;
-    }
-
-    .search-upload button {
-      padding: 6px 12px;
-      border: none;
-      border-radius: 4px;
-      background-color: white;
-      color: #0073e6;
-      cursor: pointer;
-    }
-
-    .container {
-      display: flex;
-    }
-
-    .sidebar {
-      width: 200px;
-      background-color: #fff;
-      padding: 20px;
-      border-right: 1px solid #ccc;
-      height: calc(100vh - 70px);
-    }
-
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .sidebar ul li {
-      margin: 20px 0;
-      font-weight: bold;
-      color: #333;
-    }
-
-    .main {
-      flex: 1;
-      padding: 20px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-
-    .video-box {
-      background-color: #fff;
-      padding: 10px;
-      border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .video-box img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-
-    .video-box p {
-      margin-top: 8px;
-      font-size: 1rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 15px;
-      background-color: #f0f0f0;
-      font-weight: bold;
-      position: relative;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skylinee Video Hub</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>Skylinee Tube 🎥</h1>
-    <div class="search-upload">
-      <input type="text" placeholder="Search..." />
-      <button>Upload</button>
-    </div>
+    <h1>Skylinee Video Hub</h1>
   </header>
 
-  <div class="container">
-    <div class="sidebar">
-      <ul>
-        <li>Home</li>
-        <li>Shorts</li>
-        <li>You</li>
-      </ul>
+  <main class="video-grid">
+    <!-- 12 Video Cards -->
+    <div class="video-card">
+      <img src="https://i.ytimg.com/vi/ScMzIvxBSi4/mqdefault.jpg" alt="Video thumbnail">
+      <h3>Exploring AI Tools</h3>
+      <p>Skylinee Media · 6:00</p>
     </div>
-
-    <div class="main">
-      <!-- Video 1 -->
-      <div class="video-box">
-        <a href="video.mp4" target="_blank">
-          <img src="thumbnails/video.jpg" alt="Game On!!" onerror="this.src='https://via.placeholder.com/300x150?text=Game+On!!'"/>
-          <p>Game On!!</p>
-        </a>
-      </div>
-
-      <!-- Video 2 -->
-      <div class="video-box">
-        <a href="driving.mp4" target="_blank">
-          <img src="thumbnails/driving.jpg" alt="Driving" onerror="this.src='https://via.placeholder.com/300x150?text=Driving'"/>
-          <p>Driving</p>
-        </a>
-      </div>
-
-      <!-- Placeholder Boxes (3 - 12) -->
-      ${Array.from({ length: 10 }, (_, i) => `
-        <div class="video-box">
-          <a href="#">
-            <img src="https://via.placeholder.com/300x150?text=Video+${i + 3}" />
-            <p>Video ${i + 3}</p>
-          </a>
-        </div>
-      `).join('')}
+    <div class="video-card">
+      <img src="https://i.ytimg.com/vi/Bey4XXJAqS8/mqdefault.jpg" alt="Video thumbnail">
+      <h3>Tech in 2025</h3>
+      <p>Skylinee Reports · 8:23</p>
     </div>
-  </div>
+    <div class="video-card">
+      <img src="https://i.ytimg.com/vi/kXYiU_JCYtU/mqdefault.jpg" alt="Video thumbnail">
+      <h3>Gadget Roundup</h3>
+      <p>Skylinee Review · 5:12</p>
+    </div>
+    <div class="video-card">
+      <img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/mqdefault.jpg" alt="Video thumbnail">
+      <h3>Cybersecurity 101</h3>
+      <p>Skylinee Security · 9:45</p>
+    </div>
+    <div class="video-card">
+      <img src="https://i.ytimg.com/vi/3fumBcKC6RE/mqdefault.jpg" alt="Video thumbnail">
+      <h3>How Internet Works</h3>
+      <p>Corey Talks · 7:10</p>
+    </div>
+    <div class="video-card">
+      <img src="https://i.ytimg.com/vi/FTQbiNvZqaY/mqdefault.jpg" alt="Video thumbnail">
+      <h3>Network Setup Guide</h3>
+      <p>Skylinee Labs · 6:31</p>
+    </div>
+    <div class="video-card">
+      <img src="https://i.ytimg.com/vi/L_jWHffIx5E/mqdefault.jpg" alt="Video thumbnail">
+      <h3>Top 10 Tools</h3>
+      <p>Tools & Tech · 4:50</p>
+    </div>
+    <div class="video-card">
+      <img src="https://i.ytimg.com/vi/uelHwf8o7_U/mqdefault.jpg" alt="Video thumbnail">
+      <h3>Smart Home Setup</h3>
+      <p>Skylinee Living · 3:48</p>
+    </div>
+    <div class="video-card">
+      <img src="https://i.ytimg.com/vi/CevxZvSJLk8/mqdefault.jpg" alt="Video thumbnail">
+      <h3>Wireless Explained</h3>
+      <p>Skylinee Network · 7:25</p>
+    </div>
+    <div class="video-card">
+      <img src="https://i.ytimg.com/vi/JGwWNGJdvx8/mqdefault.jpg" alt="Video thumbnail">
+      <h3>Data Privacy Tips</h3>
+      <p>Skylinee Legal · 5:05</p>
+    </div>
+    <div class="video-card">
+      <img src="https://i.ytimg.com/vi/rYEDA3JcQqw/mqdefault.jpg" alt="Video thumbnail">
+      <h3>Remote Work Setup</h3>
+      <p>Skylinee Remote · 6:15</p>
+    </div>
+    <div class="video-card">
+      <img src="https://i.ytimg.com/vi/eVTXPUF4Oz4/mqdefault.jpg" alt="Video thumbnail">
+      <h3>How to Code</h3>
+      <p>Learn with Corey · 10:00</p>
+    </div>
+  </main>
 
-  <footer>&copy; 2025 Skylinee Tube</footer>
+  <footer>
+    <p>© 2025 Skylinee. All rights reserved.</p>
+  </footer>
 </body>
 </html>
