@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Skylinee Tube</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet"/>
   <style>
     body {
       margin: 0;
@@ -15,155 +14,154 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background-color: #1e88e5;
+      background-color: #fff;
       padding: 10px 20px;
-      color: white;
-      font-family: 'Fredoka One', cursive;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-    header .logo {
+    .logo {
       font-size: 24px;
+      font-weight: bold;
     }
-    header .search-bar {
+    .logo span {
+      color: red;
+    }
+    .search-bar {
       flex: 1;
       max-width: 600px;
       margin: 0 20px;
+      display: flex;
     }
-    header input {
-      width: 100%;
+    .search-bar input {
+      flex: 1;
       padding: 8px;
-      border-radius: 20px;
-      border: none;
+      border: 1px solid #ccc;
+      border-radius: 2px 0 0 2px;
     }
-    header .upload-btn {
-      background-color: white;
-      color: #1e88e5;
+    .search-bar button {
+      padding: 8px 16px;
+      background-color: #f8f8f8;
+      border: 1px solid #ccc;
+      border-left: none;
+      cursor: pointer;
+    }
+    .upload-button {
+      background-color: #cc0000;
+      color: white;
+      padding: 8px 12px;
       border: none;
-      padding: 8px 15px;
-      border-radius: 4px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    main {
+      display: flex;
+    }
+    nav {
+      width: 200px;
+      background-color: #fff;
+      padding: 10px;
+      box-shadow: 2px 0 4px rgba(0,0,0,0.05);
+      height: calc(100vh - 58px);
+      position: sticky;
+      top: 58px;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+    nav li {
+      padding: 10px 5px;
       font-weight: bold;
       cursor: pointer;
     }
-
-    .container {
-      display: flex;
-    }
-
-    .sidebar {
-      width: 200px;
-      background-color: #fff;
-      border-right: 1px solid #ccc;
-      height: calc(100vh - 60px);
-      padding-top: 20px;
-    }
-
-    .sidebar a {
-      display: block;
-      padding: 15px 20px;
-      color: #333;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .sidebar a:hover {
-      background-color: #f0f0f0;
-    }
-
-    .main {
+    .video-container {
       flex: 1;
       padding: 20px;
-    }
-
-    .videos {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 20px;
     }
-
-    .video {
-      background-color: white;
+    .video-box {
+      background-color: #fff;
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
+      text-align: center;
     }
-
-    .video:hover {
-      transform: scale(1.02);
-    }
-
-    .video img {
+    .video-box img {
       width: 100%;
-      height: 160px;
+      height: 180px;
       object-fit: cover;
     }
-
-    .video-title {
-      padding: 10px;
+    .video-box p {
+      margin: 10px 0;
       font-weight: bold;
-      text-align: center;
     }
-
     footer {
       text-align: center;
-      padding: 15px;
+      padding: 20px;
+      background-color: #eee;
+      margin-top: 30px;
       font-size: 14px;
-      color: #777;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <div class="logo">📷 Skylinee Tube</div>
-  <div class="search-bar">
-    <input type="text" placeholder="Search">
-  </div>
-  <button class="upload-btn">Upload</button>
-</header>
+  <header>
+    <div class="logo">📷 <span>Skylinee</span> Tube</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search">
+      <button>🔍</button>
+    </div>
+    <button class="upload-button">Upload</button>
+  </header>
 
-<div class="container">
-  <nav class="sidebar">
-    <a href="#">🏠 Home</a>
-    <a href="#">🎬 Shorts</a>
-    <a href="#">👤 You</a>
-  </nav>
+  <main>
+    <nav>
+      <ul>
+        <li>🏠 Home</li>
+        <li>🎬 Shorts</li>
+        <li>👤 You</li>
+      </ul>
+    </nav>
 
-  <main class="main">
-    <div class="videos">
+    <div class="video-container">
       <!-- Video 1 -->
-      <div class="video">
+      <div class="video-box">
         <a href="videos/video.mp4" target="_blank">
           <img src="thumbnails/video.jpg" alt="Game On!!">
-          <div class="video-title">Game On!!</div>
+          <p>Game On!!</p>
         </a>
       </div>
 
       <!-- Video 2 -->
-      <div class="video">
+      <div class="video-box">
         <a href="videos/driving.mp4" target="_blank">
           <img src="thumbnails/driving.jpg" alt="Driving">
-          <div class="video-title">Driving</div>
+          <p>Driving</p>
         </a>
       </div>
 
-      <!-- Placeholder Videos -->
-      <div class="video"><img src="thumbnails/placeholder.jpg" alt=""><div class="video-title">Video 3</div></div>
-      <div class="video"><img src="thumbnails/placeholder.jpg" alt=""><div class="video-title">Video 4</div></div>
-      <div class="video"><img src="thumbnails/placeholder.jpg" alt=""><div class="video-title">Video 5</div></div>
-      <div class="video"><img src="thumbnails/placeholder.jpg" alt=""><div class="video-title">Video 6</div></div>
-      <div class="video"><img src="thumbnails/placeholder.jpg" alt=""><div class="video-title">Video 7</div></div>
-      <div class="video"><img src="thumbnails/placeholder.jpg" alt=""><div class="video-title">Video 8</div></div>
-      <div class="video"><img src="thumbnails/placeholder.jpg" alt=""><div class="video-title">Video 9</div></div>
-      <div class="video"><img src="thumbnails/placeholder.jpg" alt=""><div class="video-title">Video 10</div></div>
-      <div class="video"><img src="thumbnails/placeholder.jpg" alt=""><div class="video-title">Video 11</div></div>
-      <div class="video"><img src="thumbnails/placeholder.jpg" alt=""><div class="video-title">Video 12</div></div>
+      <!-- Video 3-12 placeholders -->
+      <div class="video-box"><img src="thumbnails/placeholder.jpg" alt="Video"><p>Video Title</p></div>
+      <div class="video-box"><img src="thumbnails/placeholder.jpg" alt="Video"><p>Video Title</p></div>
+      <div class="video-box"><img src="thumbnails/placeholder.jpg" alt="Video"><p>Video Title</p></div>
+      <div class="video-box"><img src="thumbnails/placeholder.jpg" alt="Video"><p>Video Title</p></div>
+      <div class="video-box"><img src="thumbnails/placeholder.jpg" alt="Video"><p>Video Title</p></div>
+      <div class="video-box"><img src="thumbnails/placeholder.jpg" alt="Video"><p>Video Title</p></div>
+      <div class="video-box"><img src="thumbnails/placeholder.jpg" alt="Video"><p>Video Title</p></div>
+      <div class="video-box"><img src="thumbnails/placeholder.jpg" alt="Video"><p>Video Title</p></div>
+      <div class="video-box"><img src="thumbnails/placeholder.jpg" alt="Video"><p>Video Title</p></div>
+      <div class="video-box"><img src="thumbnails/placeholder.jpg" alt="Video"><p>Video Title</p></div>
     </div>
   </main>
-</div>
 
-<footer>
-  &copy; 2025 Skylinee Tube. All rights reserved.
-</footer>
+  <footer>
+    &copy; 2025 Skylinee Tube. All rights reserved.
+  </footer>
 
 </body>
 </html>
