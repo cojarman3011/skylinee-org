@@ -89,7 +89,7 @@
       flex: 1;
       display: flex;
       overflow: hidden;
-      height: calc(100vh - 56px - 40px); /* full height minus header & footer */
+      height: calc(100vh - 56px - 40px);
     }
 
     /* LEFT SIDEBAR */
@@ -257,17 +257,14 @@
     <nav class="sidebar">
       <ul>
         <li class="active" data-menu="home" title="Home">
-          <!-- Home icon -->
           <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
           Home
         </li>
         <li data-menu="shorts" title="Shorts">
-          <!-- Shorts icon -->
           <svg viewBox="0 0 24 24"><path d="M10 16.5l6-4.5-6-4.5v9z"/></svg>
           Shorts
         </li>
         <li data-menu="you" title="You">
-          <!-- User icon -->
           <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20v-1a4 4 0 014-4h8a4 4 0 014 4v1"/></svg>
           You
         </li>
@@ -284,9 +281,9 @@
   </footer>
 
   <script>
-    // Video data
+    // Video data with your video as first entry named "Game On!!"
     const videos = [
-      { title: "Future Tech Innovations", videoFile: "future_tech_innovations.mp4", thumbnailFile: "future_tech_innovations.jpg" },
+      { title: "Game On!!", videoFile: "video.mp4", thumbnailFile: "video.jpg" },
       { title: "Video 2", videoFile: "video2.mp4", thumbnailFile: "video2.jpg" },
       { title: "Video 3", videoFile: "video3.mp4", thumbnailFile: "video3.jpg" },
       { title: "Video 4", videoFile: "video4.mp4", thumbnailFile: "video4.jpg" },
@@ -302,7 +299,6 @@
 
     const videoGallery = document.getElementById('videoGallery');
 
-    // Load videos on "Home" selected, else blank for now
     const sidebarItems = document.querySelectorAll('nav.sidebar li');
 
     function showVideos() {
@@ -340,7 +336,6 @@
 
     sidebarItems.forEach(item => {
       item.addEventListener('click', () => {
-        // Remove active class
         sidebarItems.forEach(i => i.classList.remove('active'));
         item.classList.add('active');
 
@@ -354,10 +349,8 @@
       });
     });
 
-    // Initialize with Home videos visible
     showVideos();
 
-    // Upload button handler
     function uploadVideo() {
       const input = document.createElement('input');
       input.type = 'file';
@@ -365,8 +358,7 @@
       input.multiple = true;
       input.onchange = e => {
         const files = e.target.files;
-        alert(`${files.length} file(s) selected for upload.\n\n` +
-              'Uploading to server is not implemented in this demo.');
+        alert(`${files.length} file(s) selected for upload.\n\nUploading to server is not implemented in this demo.`);
       };
       input.click();
     }
