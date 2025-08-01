@@ -19,22 +19,21 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      height: 100vh;
     }
 
-    /* Header (like YouTube) */
+    /* HEADER */
     header {
+      height: 56px;
+      background-color: #FF0000; /* YouTube red */
+      color: white;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      background-color: #FF0000; /* YouTube red */
       padding: 0 16px;
-      height: 56px;
-      box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
-      color: white;
+      justify-content: space-between;
       user-select: none;
     }
 
-    /* Left: Logo + Title */
     .logo-container {
       display: flex;
       align-items: center;
@@ -48,35 +47,74 @@
       font-size: 1.8rem;
     }
 
-    /* Center: Search bar */
-    .search-bar {
-      flex-grow: 1;
-      max-width: 600px;
-      margin: 0 20px;
-    }
-
-    .search-bar input[type="search"] {
-      width: 100%;
-      padding: 8px 12px;
-      font-size: 1rem;
-      border-radius: 2px;
+    .upload-button {
+      background: white;
+      color: #FF0000;
       border: none;
-      outline: none;
+      padding: 6px 16px;
+      font-weight: 700;
+      border-radius: 2px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.2s ease;
+    }
+    .upload-button:hover {
+      background-color: #f0f0f0;
     }
 
-    /* Main content area */
+    /* BODY LAYOUT */
+    .container {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+      height: calc(100vh - 56px - 40px); /* full height minus header & footer */
+    }
+
+    /* LEFT SIDEBAR */
+    nav.sidebar {
+      width: 220px;
+      background: white;
+      border-right: 1px solid #ddd;
+      padding: 12px 0;
+      overflow-y: auto;
+    }
+
+    nav.sidebar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav.sidebar li {
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #333;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      user-select: none;
+      transition: background-color 0.2s;
+    }
+    nav.sidebar li:hover {
+      background-color: #eee;
+    }
+
+    nav.sidebar li.active {
+      background-color: #FF0000;
+      color: white;
+    }
+
+    /* MAIN CONTENT */
     main {
-      flex-grow: 1;
-      padding: 20px 40px;
+      flex: 1;
+      padding: 20px 30px;
+      overflow-y: auto;
+      background: white;
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
       gap: 20px;
-      background: white;
-      max-width: 1200px;
-      margin: 16px auto;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgb(0 0 0 / 0.05);
+      justify-content: flex-start;
     }
 
     .video-box {
@@ -108,29 +146,27 @@
       text-overflow: ellipsis;
     }
 
-    /* Footer */
+    /* FOOTER */
     footer {
+      height: 40px;
+      background: #f1f1f1;
       text-align: center;
       font-size: 0.9rem;
       color: #666;
-      padding: 12px 0;
-      background: #f1f1f1;
+      line-height: 40px;
       user-select: none;
-      margin-top: auto;
+      flex-shrink: 0;
     }
 
-    /* Responsive */
-    @media (max-width: 700px) {
-      main {
-        padding: 10px 20px;
-      }
-      .video-box {
-        width: 100%;
-      }
-      .search-bar {
-        max-width: none;
-        margin: 0 8px;
-      }
+    /* Scrollbar for sidebar and main */
+    nav.sidebar::-webkit-scrollbar,
+    main::-webkit-scrollbar {
+      width: 8px;
+    }
+    nav.sidebar::-webkit-scrollbar-thumb,
+    main::-webkit-scrollbar-thumb {
+      background-color: rgba(0,0,0,0.1);
+      border-radius: 4px;
     }
   </style>
 </head>
@@ -141,15 +177,20 @@
       <span>📷</span>
       <div>skylinee tube</div>
     </div>
-
-    <div class="search-bar">
-      <input type="search" placeholder="Search" aria-label="Search videos" />
-    </div>
+    <button class="upload-button" onclick="uploadVideo()">Upload</button>
   </header>
 
-  <main id="videoGallery">
-    <!-- Video boxes will be inserted here by JavaScript -->
-  </main>
+  <div class="container">
+    <nav class="sidebar" id="videoList">
+      <ul>
+        <!-- Video list items inserted by JS -->
+      </ul>
+    </nav>
+
+    <main id="videoGallery">
+      <!-- Video boxes inserted by JS -->
+    </main>
+  </div>
 
   <footer>
     &copy; 2025 Skylinee Tube. All rights reserved.
@@ -172,33 +213,103 @@
       { title: "Video 12", videoFile: "video12.mp4", thumbnailFile: "video12.jpg" },
     ];
 
-    const gallery = document.getElementById('videoGallery');
+    // Reference elements
+    const videoGallery = document.getElementById('videoGallery');
+    const videoList = document.getElementById('videoList').querySelector('ul');
 
-    videos.forEach(({title, videoFile, thumbnailFile}) => {
+    // Populate sidebar list
+    videos.forEach((video, index) => {
+      const li = document.createElement('li');
+      li.textContent = video.title;
+      li.dataset.index = index;
+      if(index === 0) li.classList.add('active'); // highlight first by default
+      li.addEventListener('click', () => {
+        // Highlight active list item
+        document.querySelectorAll('nav.sidebar li').forEach(item => item.classList.remove('active'));
+        li.classList.add('active');
+        // Show only the clicked video in main
+        showSingleVideo(index);
+      });
+      videoList.appendChild(li);
+    });
+
+    // Show all videos on load
+    function showAllVideos() {
+      videoGallery.innerHTML = '';
+      videos.forEach(({title, videoFile, thumbnailFile}) => {
+        const box = document.createElement('div');
+        box.className = 'video-box';
+
+        const video = document.createElement('video');
+        video.setAttribute('poster', `thumbnails/${thumbnailFile}`);
+        video.setAttribute('preload', 'metadata');
+        video.setAttribute('controls', '');
+        video.setAttribute('muted', '');
+
+        const source = document.createElement('source');
+        source.src = `videos/${videoFile}`;
+        source.type = 'video/mp4';
+
+        video.appendChild(source);
+
+        const titleDiv = document.createElement('div');
+        titleDiv.className = 'video-title';
+        titleDiv.textContent = title;
+
+        box.appendChild(video);
+        box.appendChild(titleDiv);
+
+        videoGallery.appendChild(box);
+      });
+    }
+
+    // Show a single video in main content
+    function showSingleVideo(index) {
+      const video = videos[index];
+      videoGallery.innerHTML = '';
+
       const box = document.createElement('div');
       box.className = 'video-box';
 
-      const video = document.createElement('video');
-      video.setAttribute('poster', `thumbnails/${thumbnailFile}`);
-      video.setAttribute('preload', 'metadata');
-      video.setAttribute('controls', '');
-      video.setAttribute('muted', '');
+      const videoEl = document.createElement('video');
+      videoEl.setAttribute('poster', `thumbnails/${video.thumbnailFile}`);
+      videoEl.setAttribute('preload', 'metadata');
+      videoEl.setAttribute('controls', '');
+      videoEl.setAttribute('muted', '');
 
       const source = document.createElement('source');
-      source.src = `videos/${videoFile}`;
+      source.src = `videos/${video.videoFile}`;
       source.type = 'video/mp4';
 
-      video.appendChild(source);
+      videoEl.appendChild(source);
 
       const titleDiv = document.createElement('div');
       titleDiv.className = 'video-title';
-      titleDiv.textContent = title;
+      titleDiv.textContent = video.title;
 
-      box.appendChild(video);
+      box.appendChild(videoEl);
       box.appendChild(titleDiv);
 
-      gallery.appendChild(box);
-    });
+      videoGallery.appendChild(box);
+    }
+
+    // Initialize page with all videos visible
+    showAllVideos();
+
+    // Upload button click handler (opens file picker)
+    function uploadVideo() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'video/*';
+      input.multiple = true;
+      input.onchange = e => {
+        const files = e.target.files;
+        alert(`${files.length} file(s) selected for upload.\n\n` +
+              'Uploading to server is not implemented in this demo.');
+        // You can implement upload logic here (e.g. send to your backend)
+      };
+      input.click();
+    }
   </script>
 
 </body>
