@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Skylinee LLC | Home</title>
+  <!-- Roboto Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -32,11 +34,23 @@
       margin-right: 10px;
     }
 
+    .top-bar .logo span {
+      font-family: 'Roboto', sans-serif;
+      color: #3ea6ff;
+      font-weight: 700;
+      font-size: 1.2em;
+    }
+
     .top-bar input[type="text"] {
       width: 40%;
       padding: 8px;
       border-radius: 3px;
       border: none;
+    }
+
+    .top-bar .buttons {
+      display: flex;
+      align-items: center;
     }
 
     .top-bar button {
@@ -145,10 +159,13 @@
   <div class="top-bar">
     <div class="logo">
       <img src="https://github.com/cojarman3011/skylinee-website/raw/main/skylinee%20logo.png" alt="Skylinee LLC Logo" />
-      <strong>Skylinee LLC</strong>
+      <span>Skylinee LLC</span>
     </div>
     <input type="text" placeholder="Search videos..." />
-    <button onclick="alert('Upload page not yet implemented')">Upload</button>
+    <div class="buttons">
+      <button onclick="alert('Upload page not yet implemented')">Upload</button>
+      <button onclick="alert('Login page not yet implemented')">Login</button>
+    </div>
   </div>
 
   <div class="container">
