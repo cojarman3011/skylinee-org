@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Upload Video</title>
+</head>
+<body>
+  <h2>Upload Video</h2>
+  <form action="http://69.140.162.221:8080/upload.php" method="post" enctype="multipart/form-data">
+    <label for="fileToUpload">Select video to upload:</label><br><br>
+    <input type="file" name="fileToUpload" id="fileToUpload" accept="video/*" required><br><br>
+    <input type="submit" value="Upload Video" name="submit">
+  </form>
+</body>
+</html>
