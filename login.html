@@ -58,16 +58,25 @@
     .login-container button:hover {
       background-color: #2d8cd6;
     }
+
+    /* Register button styling */
+    .register-button {
+      background-color: black;
+      color: white;
+      font-size: 0.85em; /* smaller than login button */
+      margin-top: 10px;
+    }
+
+    .register-button:hover {
+      background-color: #333;
+    }
   </style>
 </head>
 <body>
 
   <div class="login-container">
     <h2>Login</h2>
-   <button onclick="window.location.href='https://uploads.skylinee.org/login.html'">
-  Login
-</button>
-
+    <form action="http://76.111.102.79:8080/login" method="post">
       <label for="username">Username</label>
       <input type="text" id="username" name="username" required>
 
@@ -75,9 +84,13 @@
       <input type="password" id="password" name="password" required>
 
       <button type="submit">Login</button>
+
+      <!-- Register button -->
+      <a href="registration.html">
+        <button type="button" class="register-button">Register</button>
+      </a>
     </form>
   </div>
 
 </body>
 </html>
-
